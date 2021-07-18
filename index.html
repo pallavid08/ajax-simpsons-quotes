@@ -23,15 +23,48 @@
 			integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 			crossorigin="anonymous"
 		/>
-		<style></style>
+		<style>
+			.section {
+				text-align: center;
+			}
+			.container {
+				display: flex;
+				flex-direction: column ;
+				align-items: center;
+			}
+
+			.button {
+				margin: 10px;
+				background-color: burlywood;
+				border-radius: 5px;
+				border: 0.5px solid gray;
+			}
+
+			.content {
+				
+				margin-top: 20px;
+				padding: 20px;
+				border: 1px solid gray;
+				background-color: cornsilk;
+				border-radius: 50px;
+				width: 500px;
+				text-align: center;
+				font-weight: bold;
+			}
+			.title {
+				color: burlywood;
+				font-weight: bolder;
+			}
+			
+		</style>
 	</head>
 
 	<body>
 		<section class="section">
 			<div class="container">
-				<h1 class="title">Simpson API</h1>
-
-				<div class="content" id="simpson"></div>
+				<h1 class="title">Simpson Quotes</h1>
+				<button class="button" id="button">Get A Quote</button>
+				<div class="content" id="simpson">Awesomeness Loads Here!</div>
 			</div>
 		</section>
 
@@ -52,20 +85,17 @@ function fetchSimpsonsQuotesJSON() {
       return response.data;
     })
     .then(function(item) {
-      console.log('data decoded from JSON:', item);
-
-      
       const quoteHtml = `
         <h3><strong>${item[0].character}</strong></h3>
         <img src="${item[0].image}" />
-        <p><strong>${item[0].quote}</strong></p>
-      `;
-      
-      document.querySelector('#simpson').innerHTML = quoteHtml;
+        <p><strong>${item[0].quote}</strong></p>`;
+        document.querySelector('#simpson').innerHTML = quoteHtml;
     });
-}
 
-fetchSimpsonsQuotesJSON();
+}
+	const btn = document.getElementById('button')
+	btn.addEventListener('click', () => fetchSimpsonsQuotesJSON());
+	
         </script>
 	</body>
 </html>
